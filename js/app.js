@@ -32,7 +32,7 @@ var Enemy = function() {
     this.y = (tileHeight-20) + Math.floor(Math.random() * 3) * tileHeight;
     // the speed is in following range: (100 <= speed < 800)
     this.speed = 100 + Math.floor(Math.random() * 7) * 100;
-}
+};
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -66,11 +66,11 @@ Enemy.prototype.update = function(dt) {
             }
         }
     }
-}
+};
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 /*
 * Player class display its choosen character and draw its move its character location
 * upon user interaction
@@ -83,12 +83,12 @@ var Player = function(playerNumber, col) {
     this.playerNumber = playerNumber;
     this.hearts;
     this.score;
-}
+};
 // handle keyboard input and update player's location
 Player.prototype.update = function() {
     // ignore the key pressed from selecting character initially
     // since this is two player game, we need to ignore the key press twice
-    if(removeOldInput !=0 ){
+    if(removeOldInput != 0 ){
         removeOldInput--;
     }
     // update location of the player1 upon user interaction
@@ -131,7 +131,7 @@ Player.prototype.update = function() {
     }
     // clean up the user key code for the next interaction
     this.currentKey = null;
-}
+};
 // render choosen character
 Player.prototype.render = function() {
     // draw player1 character
@@ -142,13 +142,13 @@ Player.prototype.render = function() {
     else {
         ctx.drawImage(Resources.get(this.sprite[player2Character]), this.x, this.y);
     }
-}
+};
 Player.prototype.handleInput = function(keyString) {
     // check if the keyboard input was what the game supports
     if(keyString != undefined) {
         this.currentKey = keyString;
     }
-}
+};
 /*
 * Display gem within random location within stone blocks
 *
@@ -163,7 +163,7 @@ var Gem = function() {
     this.x = tileWidth * Math.floor(Math.random() * 5);
     // calculate the random y location of the Gem within the stone block
     this.y = tileHeight * (Math.floor(Math.random() * 3) + 1) - 30;
-}
+};
 Gem.prototype.update = function() {
     //loop through each players to check collision
     for(i=0; i< players.length; i++) {
@@ -194,11 +194,11 @@ Gem.prototype.update = function() {
             }
         }
     }
-}
+};
 // render gem
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 /*
 * Display score for each player and update appropriate score
 *
@@ -210,14 +210,14 @@ var Score = function(x) {
     this.numOfGems = 11;
     // flag to determine if score is needed to be updated
     this.isScoreNeedUpdate = true;
-}
+};
 // update score
 Score.prototype.update = function() {
     // if score needs to be updated update score
     if(this.isScoreNeedUpdate) {
         this.numOfGems--;
     }
-}
+};
 // render score if neeeded
 Score.prototype.render = function(playerNumber) {
     // is score needs to be updated, display updated score
@@ -241,7 +241,7 @@ Score.prototype.render = function(playerNumber) {
         //reset to false to prevent update on next cycle
         this.isScoreNeedUpdate = false;
     }
-}
+};
 /*
 *  Display number of hearts for each player 
 *
@@ -252,21 +252,21 @@ var Heart = function(x) {
     this.y = tileHeight * 7 - 10;
     // life of a character is set to 3
     this.life = 3;
-}
+};
 // render heart
 Heart.prototype.render = function() {
     // create temp heart variable to store the current first heart's location
     var tempHeartX = this.x;
     // draw white background behind heard to clean up hearts from last cycle
     ctx.fillStyle = 'white';
-    ctx.fillRect(this.x,this.y + 21,150,50); 
+    ctx.fillRect(this.x,this.y + 21,150,50);
     // draw correct number of heart for a player
     for(i=0; i<this.life; i++) {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 50, 75);
         this.x += 45;
     }
     this.x = tempHeartX;
-}
+};
 /*
 * Display game over screen upon game ends
 *
@@ -274,7 +274,7 @@ Heart.prototype.render = function() {
 var Gameover =  function() {
     this.isGameOver = false;
     this.isWon = false;
-}
+};
 // render game over page
 Gameover.prototype.render = function() {
     var winner = 0;
@@ -282,7 +282,7 @@ Gameover.prototype.render = function() {
         if(players[i].score.numOfGems == 0) {
             winner = players[i];
             this.isWon = true;
-            break;    
+            break;
         }
         if(players[i].hearts.life <= 0) {
            //remove the player from the players array
@@ -311,10 +311,10 @@ Gameover.prototype.render = function() {
         for(i=0; i< players.length; i++) {
             //make sure player does not collide against bug over the game is over
             players[i].x = -100;
-            players[i].y = -500
+            players[i].y = -500;
         }
     }
-}
+};
 /*
 * main game: initialze necessary objects to play game on the stage
 *
@@ -334,7 +334,7 @@ var player2 = new Player(2,4);
 //  heart object to player2
 player2.hearts = new Heart(360);
 //  score object to player2    
-player2.score  = new Score(290);    
+player2.score  = new Score(290);
 // array contains player1 and player2 object. useful for iterating each player throughout code
 var players = [player1, player2];
 // create gem object

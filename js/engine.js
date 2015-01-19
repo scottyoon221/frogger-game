@@ -63,7 +63,7 @@ var Engine = (function(global) {
          * function again as soon as the browser is able to draw another frame.
          */
         win.requestAnimationFrame(main);
-    };
+    }
 
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
@@ -293,7 +293,7 @@ var Engine = (function(global) {
         if(keyString != undefined) {
             currentKey = keyString;
         }
-    }
+    };
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
      * all of these images are properly loaded our game will start.
@@ -305,8 +305,8 @@ var Engine = (function(global) {
         'images/enemy-bug.png',
         'images/char-boy.png',
         'images/char-cat-girl.png',
-        'images/char-horn-girl.png', 
-        'images/char-pink-girl.png', 
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
         'images/char-princess-girl.png',
         'images/Gem Blue.png',
         'images/Gem Orange.png',
