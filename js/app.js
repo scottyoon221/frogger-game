@@ -158,7 +158,7 @@ var Gem = function() {
     this.gems = ['images/Gem Blue.png', 'images/Gem Green.png', 'images/Gem Orange.png'];
     //randomly pick gem image from gems array
     this.sprite = this.gems[Math.floor(Math.random() * 3)];
-    // Gem must be displayed anywhere on the stone block 
+    // Gem must be displayed anywhere on the stone block
     // calculate the random x location of the Gem within the stone block
     this.x = tileWidth * Math.floor(Math.random() * 5);
     // calculate the random y location of the Gem within the stone block
@@ -222,28 +222,28 @@ Score.prototype.update = function() {
 Score.prototype.render = function(playerNumber) {
     // is score needs to be updated, display updated score
     if(this.isScoreNeedUpdate) {
-        // redraw white background behind score to clean up the old score
-        ctx.fillStyle = 'white';
+        // redraw black background behind score to clean up the old score
+        ctx.fillStyle = 'black';
         ctx.fillRect(this.x,25,220,20);
-        // redraw white background behind player (1/2) letters
-        ctx.fillStyle = 'white';
+        // redraw black background behind player (1/2) letters
+        ctx.fillStyle = 'black';
         ctx.fillRect(this.x,5,80,20);
         ctx.font='20px Georgia';
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'white';
         // Player (1/2):
         ctx.fillText('Player' + playerNumber + ':', this.x, 20);
         // score
-        ctx.fillStyle = 'blue';
+        ctx.fillStyle = 'yellow';
         ctx.fillText(this.numOfGems, this.x, this.y);
         // explanation
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'white';
         ctx.fillText('more gems to collect!', this.x + 23, 40);
         //reset to false to prevent update on next cycle
         this.isScoreNeedUpdate = false;
     }
 };
 /*
-*  Display number of hearts for each player 
+*  Display number of hearts for each player
 *
 */
 var Heart = function(x) {
@@ -257,8 +257,8 @@ var Heart = function(x) {
 Heart.prototype.render = function() {
     // create temp heart variable to store the current first heart's location
     var tempHeartX = this.x;
-    // draw white background behind heard to clean up hearts from last cycle
-    ctx.fillStyle = 'white';
+    // draw black background behind heart to clean up hearts from last cycle
+    ctx.fillStyle = 'black';
     ctx.fillRect(this.x,this.y + 21,150,50);
     // draw correct number of heart for a player
     for(i=0; i<this.life; i++) {
@@ -333,7 +333,7 @@ player1.score  = new Score(0);
 var player2 = new Player(2,4);
 //  heart object to player2
 player2.hearts = new Heart(360);
-//  score object to player2    
+//  score object to player2
 player2.score  = new Score(290);
 // array contains player1 and player2 object. useful for iterating each player throughout code
 var players = [player1, player2];

@@ -69,7 +69,7 @@ var Engine = (function(global) {
      * particularly setting the lastTime variable that is required for the
      * game loop.
      */
-     
+
     function init() {
         // refresh reset until isReset flag is false
         if(isReset) {
@@ -181,14 +181,14 @@ var Engine = (function(global) {
     }
     /*  The reset function is called to draw game selection page
      *  It's called by the init() method and in itself call init until user releases
-     *  enter key 
+     *  enter key
      */
     function reset() {
         // character selection instruction
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = 'black';
         ctx.fillRect(0,30,500,60);
         ctx.font='20px Georgia';
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'white';
         ctx.fillText('Select Your Character Using a or d Key for Player 1', 10, 45);
         ctx.fillText('and Left or Right Arrow Key for Player 2', 50, 65);
         ctx.fillText('Then Press Enter', 170, 85);
@@ -246,8 +246,8 @@ var Engine = (function(global) {
         else if(currentKey == 'enter') {
             isReset = false;
             currentKey = null;
-            //clean up stage with white background
-            ctx.fillStyle = 'white';
+            //clean up stage with black background
+            ctx.fillStyle = 'black';
             ctx.fillRect(0,0,505,656);
         }
 
@@ -274,7 +274,7 @@ var Engine = (function(global) {
         else {
             init();
         }
-        
+
     }
     // event lisnter to read key code
     document.addEventListener('keyup', function(e) {
