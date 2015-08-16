@@ -16,6 +16,7 @@ var removeOldInput = 2;
 // isReset variable will determine if game needs to display game character selection screen before
 // jumping into to main game
 var isReset = true;
+var isRestartButton = true;
 /*
 * Enemy class displays bug images and calculate its movement.
 */
@@ -300,6 +301,11 @@ Gameover.prototype.render = function() {
         ctx.fillStyle = 'black';
         ctx.fillText('Game Over', 115, 200);
         ctx.globalAlpha = 0.2;
+        if(isRestartButton) {
+            // display restart button
+            $(".restart").toggle();
+            isRestartButton = false;
+        }
     }
     // else display which player won
     else if(this.isWon) {
@@ -309,9 +315,14 @@ Gameover.prototype.render = function() {
         ctx.fillText('Player ' + winner.playerNumber + ' Won!', 70, 200);
         ctx.globalAlpha = 0.2;
         for(i=0; i< players.length; i++) {
-            //make sure player does not collide against bug over the game is over
+            //make sure player does not collide against bug when the game is over
             players[i].x = -100;
             players[i].y = -500;
+        }
+        if(isRestartButton) {
+            // display restart button
+            $(".restart").toggle();
+            isRestartButton = false;
         }
     }
 };
